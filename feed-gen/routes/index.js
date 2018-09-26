@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var faker = require('faker')
 
+var idKey = ["id", "uuid"]
 var fixtureJoiners = [" vs ", " VS ", " + ", "+", ""]
 var sports = ["boxing", "golf", "blinking", "high fiving", ""]
 var marketType = ["craziest-victory-dance", "fastest-sports-person", "slowest-sports-person", ""]
@@ -19,14 +20,16 @@ router.get('/', function(req, res, next) {
   var fixture = randomName1 + joiner + randomName2 
 
   var text = { 
-    fixture: fixture,
+    fixture: listify(fixture),
     startDate: faker.date.future(1),
-    sport: sports[Math.floor(Math.random()*sports.length)],
+    sport: listify(sports[Math.floor(Math.random()*sports.length)]),
     markets: Array.from({length: Math.random()*markets}, () => createMarket(randomName1, randomName2)),
   }
 
+  text[idKey[Math.floor(Math.random()*idKey.length)]] = listify(createId())
+
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(text, null, 3));
+  res.end(JSON.stringify(text, null, 3));
 });
 
 module.exports = router;
@@ -95,4 +98,11 @@ function createMoneyLineOdds() {
   } else {
     return "-" + (Math.floor((Math.random()*5)+1)*50).toString()
   }
+}
+
+function listify(value) {
+  if (Math.random() < 0.2) {
+    return [value]
+  }
+  return value
 }
