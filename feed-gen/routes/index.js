@@ -26,9 +26,11 @@ router.get('/', function(req, res, next) {
     markets: Array.from({length: Math.random()*markets}, () => createMarket(randomName1, randomName2)),
   }
 
-  text[idKey[Math.floor(Math.random()*idKey.length)]] = listify(createId())
+  var fixtureID = createId()
+  text[idKey[Math.floor(Math.random()*idKey.length)]] = listify(fixtureID)
 
   res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Fixture-ID', fixtureID)
   res.end(JSON.stringify(text, null, 3));
 });
 

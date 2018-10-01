@@ -17,3 +17,9 @@ The general outline is;
 | markets.options.name | name of competitor (or "draw") | none |
 | markets.options.odds | odds for option | can be in one of 4 odds formats |
 | id | id of message | may be called `id` of `uuid`, may be a string or int, may be encapsulated in an array of length 1 |
+
+## Usage
+
+```sh
+DEBUG=feed-gen:* npm start
+```
