@@ -1,0 +1,16 @@
+
+{
+    "pipeline": {
+      "name": "kazaam-normaliser"
+    },
+    "input": {
+      "atom": {
+        "glob": "/*",
+        "repo": "feed-raw"
+      }
+    },
+    "transform": {
+      "cmd": ["./kazaam" ],
+      "image": "trelore/kazaam"
+    }
+}

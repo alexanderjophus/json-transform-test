@@ -29,6 +29,8 @@ router.get('/', function(req, res, next) {
   var fixtureID = createId()
   text[idKey[Math.floor(Math.random()*idKey.length)]] = listify(fixtureID)
 
+  // TODO: randomly wrap in a 'doc' object
+
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Fixture-ID', fixtureID)
   res.end(JSON.stringify(text, null, 3));
